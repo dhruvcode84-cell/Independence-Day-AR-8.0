@@ -41,7 +41,7 @@ const SCENE_LAYOUT = {
     scale: 1
   },
   flag: {
-    position: { x: -0.50, y: 0.25, z: 0.10 },
+    position: { x: -0.20, y: 0.10, z: 0.10 },
     rotation: { x: 0, y: 2.3, z: 0 },
     scale: 0.62
   },
