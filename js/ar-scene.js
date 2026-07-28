@@ -254,7 +254,9 @@ function createCurvedGradientWall(logoUrl) {
   for (let i = 0; i < position.count; i += 1) {
     const x = position.getX(i);
     const normalized = x / (width * 0.5);
-    position.setZ(i, -0.16 * normalized * normalized);
+    // Positive Z bends the wall toward the viewer without rotating the group.
+    // This preserves the saffron-to-green gradient and keeps the logo readable.
+    position.setZ(i, 0.16 * normalized * normalized);
   }
   geometry.computeVertexNormals();
 
@@ -283,7 +285,7 @@ function createCurvedGradientWall(logoUrl) {
 
   const edgeMaterial = new THREE.MeshBasicMaterial({color:0xffd28a,transparent:true,opacity:.80,toneMapped:false});
   const topEdge = new THREE.Mesh(new THREE.BoxGeometry(2.02,.018,.025), edgeMaterial);
-  topEdge.position.set(0,.70,-.08);
+  topEdge.position.set(0,.70,.05);
   group.add(topEdge);
 
   const texture = new THREE.TextureLoader().load(logoUrl);
@@ -415,12 +417,8 @@ export class ARExperience {
     this.contentRoot.add(contactShadow);
 
     const gradientWall = createCurvedGradientWall(CONFIG.wallLogo);
-    gradientWall.position.set(0,0.35,-0.15);
+    this.contentRoot.add(gradientWall);
 
-gradientWall.rotation.y = Math.PI;
-
-this.contentRoot.add(gradientWall);
-    
     const loader = new GLTFLoader();
     const [stageModel, gateModel, chakraModel] = await Promise.all([
       loadModel(loader, CONFIG.models.stage),
