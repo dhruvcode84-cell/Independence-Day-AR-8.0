@@ -16,7 +16,7 @@ const SCENE_LAYOUT = {
     scale: { x: 1.0, y: 0.58, z: 1.0 }
   },
   gradientWall: {
-    position: { x: 0, y: 0, z: -0.40 },
+    position: { x: 0, y: 0, z: -0.36 },
     rotation: { x: 0, y: 0, z: 0 },
     scale: 1
   },
@@ -41,7 +41,7 @@ const SCENE_LAYOUT = {
     scale: 1
   },
   flag: {
-    position: { x: -0.66, y: 0.25, z: 0.10 },
+    position: { x: -0.50, y: 0.25, z: 0.10 },
     rotation: { x: 0, y: 2.3, z: 0 },
     scale: 0.62
   },
