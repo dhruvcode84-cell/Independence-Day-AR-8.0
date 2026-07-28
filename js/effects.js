@@ -2,9 +2,9 @@ import * as THREE from "three";
 
 export function createAnimatedFlag() {
   const flagWidth = 1.04;
-  const flagHeight = 0.58;
+  const flagHeight = 0.64;
   const poleHeight = 1.22;
-  const poleTopClearance = 0.17;
+  const poleTopClearance = 0.10;
 
   const geometry = new THREE.PlaneGeometry(flagWidth, flagHeight, 72, 32);
 
@@ -110,7 +110,7 @@ export function createAnimatedFlag() {
 
   // The cloth is shifted slightly right so its left edge meets the pole.
   const clothX = 0.18;
-  const clothY = 0.30;
+  const clothY = 0.20;
 
   const flag = new THREE.Mesh(geometry, material);
   flag.position.set(clothX, clothY, 0);
