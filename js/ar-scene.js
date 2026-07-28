@@ -41,7 +41,7 @@ const SCENE_LAYOUT = {
     scale: 1
   },
   flag: {
-    position: { x: -0.40, y: 0.30, z: -0.10 },
+    position: { x: -0.40, y: 0.10, z: -0.10 },
     rotation: { x: 0, y: 2.3, z: 0 },
     scale: 0.7
   },
@@ -61,7 +61,7 @@ const SCENE_LAYOUT = {
     scale: 1.12
   },
   wallLogo: {
-    position: { x: 0.68, y: 0.50, z: -0.031 },
+    position: { x: 0.68, y: 0.50, z: -0.31 },
     rotation: { x: 0, y: -5.7, z: 0 },
     scale: 1
   },
