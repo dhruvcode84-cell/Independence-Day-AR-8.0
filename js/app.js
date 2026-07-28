@@ -52,7 +52,7 @@ $("#start-camera-btn")?.addEventListener("click", async () => {
 
   try {
     if (!ARExperienceClass) {
-      const arModule = await import("./ar-scene.js?v=8.2");
+      const arModule = await import("./ar-scene.js?v=8.3");
       ARExperienceClass = arModule.ARExperience;
     }
   } catch (error) {
