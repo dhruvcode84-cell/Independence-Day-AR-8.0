@@ -25,7 +25,7 @@ const SCENE_LAYOUT = {
     scale: { x: 1.0, y: 0.58, z: 1.0 }
   },
   gradientWall: {
-    position: { x: 0, y: 0, z: 0 },
+    position: { x: 0, y: 0, z: -0.1 },
     rotation: { x: 0, y: 0, z: 0 },
     scale: 1
   },
