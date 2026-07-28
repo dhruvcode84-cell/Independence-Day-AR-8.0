@@ -110,7 +110,7 @@ export function createAnimatedFlag() {
 
   // The cloth is shifted slightly right so its left edge meets the pole.
   const clothX = 0.18;
-  const clothY = 0.20;
+  const clothY = 0.30;
 
   const flag = new THREE.Mesh(geometry, material);
   flag.position.set(clothX, clothY, 0);
