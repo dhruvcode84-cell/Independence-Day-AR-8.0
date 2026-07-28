@@ -46,7 +46,7 @@ const SCENE_LAYOUT = {
     scale: 0.7
   },
   videoPanel: {
-    position: { x: 0.08, y: 0.12, z: 0.27 },
+    position: { x: 0.08, y: -0.12, z: 0.27 },
     rotation: { x: 0, y: 0, z: 0 },
     scale: 1.02
   },
