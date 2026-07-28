@@ -41,12 +41,12 @@ const SCENE_LAYOUT = {
     scale: 1
   },
   flag: {
-    position: { x: -0.40, y: 0.20, z: -0.10 },
+    position: { x: -0.40, y: 0.40, z: -0.10 },
     rotation: { x: 0, y: 2.3, z: 0 },
     scale: 0.7
   },
   videoPanel: {
-    position: { x: 0.08, y: -0.12, z: 0.27 },
+    position: { x: 0.08, y: 0.12, z: -0.27 },
     rotation: { x: 0, y: 0, z: 0 },
     scale: 1.02
   },
