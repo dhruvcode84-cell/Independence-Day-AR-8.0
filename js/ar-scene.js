@@ -38,12 +38,12 @@ const SCENE_LAYOUT = {
   indiaGate: {
     position: { x: -0.43, y: -0.29, z: 0.20 },
     rotation: { x: 0, y: 4.6, z: 0 },
-    scale: 1
+    scale: 0.62
   },
   flag: {
-    position: { x: -0.20, y: 0.10, z: 0.10 },
+    position: { x: -0.40, y: 0.20, z: 0.10 },
     rotation: { x: 0, y: 2.3, z: 0 },
-    scale: 0.62
+    scale: 1
   },
   videoPanel: {
     position: { x: 0.08, y: 0.12, z: 0.27 },
