@@ -415,8 +415,12 @@ export class ARExperience {
     this.contentRoot.add(contactShadow);
 
     const gradientWall = createCurvedGradientWall(CONFIG.wallLogo);
-    this.contentRoot.add(gradientWall);
+    gradientWall.position.set(0,0.35,-0.15);
 
+gradientWall.rotation.y = Math.PI;
+
+this.contentRoot.add(gradientWall);
+    
     const loader = new GLTFLoader();
     const [stageModel, gateModel, chakraModel] = await Promise.all([
       loadModel(loader, CONFIG.models.stage),
