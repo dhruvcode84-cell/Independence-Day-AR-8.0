@@ -51,7 +51,7 @@ const SCENE_LAYOUT = {
     scale: 1.02
   },
   greetingPanel: {
-    position: { x: 0.62, y: 0.10, z: 0.24 },
+    position: { x: 0.62, y: 0.05, z: 0.24 },
     rotation: { x: 0, y: -5.7, z: 0 },
     scale: 0.92
   },
@@ -61,7 +61,7 @@ const SCENE_LAYOUT = {
     scale: 1.12
   },
   wallLogo: {
-    position: { x: 0.68, y: 0.50, z: 0 },
+    position: { x: 0.68, y: 0.50, z: 0.4 },
     rotation: { x: 0, y: -5.7, z: 0 },
     scale: 1
   },
