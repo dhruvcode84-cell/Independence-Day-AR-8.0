@@ -3,8 +3,8 @@ import * as THREE from "three";
 export function createAnimatedFlag() {
   const flagWidth = 1.04;
   const flagHeight = 0.64;
-  const poleHeight = 1.22;
-  const poleTopClearance = 0.10;
+  const poleHeight = 1.50;
+  const poleTopClearance = 0.04;
 
   const geometry = new THREE.PlaneGeometry(flagWidth, flagHeight, 72, 32);
 
