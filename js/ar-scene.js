@@ -83,8 +83,8 @@ function createGreetingPanel() {
       toneMapped: false
     })
   );
-  panel.position.set(0.68, 0.08, 0.32);
-  panel.rotation.y = -0.18;
+  panel.position.set(0.62, 0.10, 0.24);
+  panel.rotation.y = -0.10;
   panel.scale.setScalar(0.92);
   return panel;
 }
@@ -130,9 +130,9 @@ function createVideoPanel(video) {
   screen.position.z = 0.026;
 
   group.add(glow, frame, screen);
-  group.position.set(0.05, 0.10, 0.38);
+  group.position.set(0.08, 0.12, 0.27);
   group.rotation.y = 0;
-  group.scale.setScalar(1.08);
+  group.scale.setScalar(1.02);
   group.userData.screen = screen;
   return group;
 }
@@ -279,19 +279,19 @@ function createCurvedGradientWall(logoUrl) {
       }`
   });
   const wall = new THREE.Mesh(geometry, material);
-  wall.position.set(0, 0.16, -0.04);
+  wall.position.set(0, 0.18, -0.10);
   wall.receiveShadow = true;
   group.add(wall);
 
   const edgeMaterial = new THREE.MeshBasicMaterial({color:0xffd28a,transparent:true,opacity:.80,toneMapped:false});
   const topEdge = new THREE.Mesh(new THREE.BoxGeometry(2.02,.018,.025), edgeMaterial);
-  topEdge.position.set(0,.70,.05);
+  topEdge.position.set(0,.72,-.01);
   group.add(topEdge);
 
   const texture = new THREE.TextureLoader().load(logoUrl);
   texture.colorSpace = THREE.SRGBColorSpace;
   const logo = new THREE.Mesh(new THREE.PlaneGeometry(.48,.16), new THREE.MeshBasicMaterial({map:texture,transparent:true,toneMapped:false,depthWrite:false}));
-  logo.position.set(.68,.49,.025);
+  logo.position.set(.68,.50,-.035);
   logo.rotation.y=-.10;
   group.add(logo);
   return group;
@@ -397,7 +397,7 @@ export class ARExperience {
 
     // contentRoot retains the cinematic entrance and floating animation.
     this.contentRoot = new THREE.Group();
-    this.contentRoot.position.set(0, 0.05, 0.02);
+    this.contentRoot.position.set(0, 0.04, 0.00);
     this.contentRoot.rotation.set(0, 0, 0);
     this.interactionGroup.add(this.contentRoot);
 
@@ -434,7 +434,7 @@ export class ARExperience {
       targetSize: 1.48,
       axis: "width"
     }));
-    stage.position.set(0, -0.36, 0.19);
+    stage.position.set(0, -0.36, 0.13);
     stage.scale.set(1, 0.82, 1);
     this.contentRoot.add(stage, createStageAccents(), createPremiumLightRings());
 
@@ -446,8 +446,8 @@ export class ARExperience {
       targetSize: 0.66,
       axis: "height"
     }));
-    gate.position.set(-0.50, -0.29, 0.31);
-    gate.rotation.y = 0.14;
+    gate.position.set(-0.43, -0.29, 0.20);
+    gate.rotation.y = 0.08;
     this.contentRoot.add(gate);
 
     // Independent Chakra: clear, blue and in front of the stage.
@@ -458,16 +458,16 @@ export class ARExperience {
       targetSize: 0.22,
       axis: "width"
     }));
-    chakra.position.set(0.02, 0.42, 0.20);
+    chakra.position.set(0.02, 0.43, 0.08);
     chakra.scale.setScalar(1.12);
     this.chakra = chakra;
     this.contentRoot.add(chakra);
 
     // Flag behind the monument, with shader-rendered 24-spoke Chakra.
     const flag = createAnimatedFlag();
-    flag.position.set(-0.70, 0.25, 0.18);
+    flag.position.set(-0.66, 0.25, 0.10);
     flag.scale.setScalar(0.62);
-    flag.rotation.y = 0.08;
+    flag.rotation.y = 0.04;
     this.flagMaterial = flag.userData.flagMaterial;
 
     const videoPanel = createVideoPanel(this.video);
@@ -476,12 +476,16 @@ export class ARExperience {
     const trails = createTricolorTrails();
     this.particles = particles;
 
-    trails.position.set(-0.15, -0.03, 0.22);
+    trails.position.set(-0.08, -0.05, 0.14);
     trails.scale.setScalar(0.92);
     this.contentRoot.add(flag, videoPanel, greetingPanel, particles, trails);
 
     anchor.onTargetFound = async () => {
       this.targetVisible = true;
+      this.rotationTarget = 0;
+      this.rotationCurrent = 0;
+      this.rotationVelocity = 0;
+      this.interactionGroup.rotation.y = 0;
       this.interactionGroup.visible = true;
       this.contentRoot.scale.setScalar(0.025);
       this.onStatus?.("Card detected • Experience active");
@@ -577,7 +581,11 @@ export class ARExperience {
         const deltaX = event.clientX - this.lastPointerX;
         const deltaTime = Math.max(now - this.lastPointerTime, 8);
         const rotationDelta = deltaX * 0.008;
-        this.rotationTarget += rotationDelta;
+        this.rotationTarget = THREE.MathUtils.clamp(
+          this.rotationTarget + rotationDelta,
+          -0.52,
+          0.52
+        );
         this.rotationVelocity = THREE.MathUtils.clamp(
           rotationDelta / (deltaTime / 16.67),
           -0.12,
@@ -666,14 +674,18 @@ export class ARExperience {
 
     // Preserve gentle momentum after a horizontal swipe.
     if (!isTouching && Math.abs(this.rotationVelocity) > 0.00008) {
-      this.rotationTarget += this.rotationVelocity;
-      this.rotationVelocity *= 0.925;
+      this.rotationTarget = THREE.MathUtils.clamp(
+        this.rotationTarget + this.rotationVelocity,
+        -0.52,
+        0.52
+      );
+      this.rotationVelocity *= 0.90;
     }
 
-    // Museum-style idle rotation begins after five seconds without input.
-    if (!isTouching && !this.resetting && idleFor > 5000) {
-      this.rotationTarget += 0.0017;
-    }
+    // Keep the enterprise composition front-facing.
+    // Automatic rotation is intentionally disabled so the wall and panels
+    // never become edge-on during normal viewing.
+    void idleFor;
 
     this.rotationCurrent = THREE.MathUtils.lerp(
       this.rotationCurrent,
