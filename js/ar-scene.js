@@ -4,103 +4,6 @@ import { MindARThree } from "mindar-image-three";
 import { CONFIG } from "./config.js";
 import { createAnimatedFlag, createParticles, createTricolorTrails } from "./effects.js";
 
-/**
- * ============================================================
- * AR SCENE LAYOUT CONTROLS
- * ============================================================
- * Edit ONLY this block to move, rotate, or resize scene elements.
- *
- * Position: X = left/right, Y = down/up, Z = back/front.
- * Rotation values are degrees.
- */
-const SCENE_LAYOUT = {
-  contentRoot: {
-    position: { x: 0, y: 0.04, z: 0.00 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: 1
-  },
-  contactShadow: {
-    position: { x: 0, y: -0.32, z: 0.17 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: { x: 1.0, y: 0.58, z: 1.0 }
-  },
-  gradientWall: {
-    position: { x: 0, y: 0, z: -1 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: 1
-  },
-  stage: {
-    position: { x: 0, y: -0.36, z: 0.13 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: { x: 1, y: 0.82, z: 1 }
-  },
-  stageAccents: {
-    position: { x: 0, y: -0.31, z: 0.31 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: { x: 1.0, y: 0.58, z: 1.0 }
-  },
-  premiumLightRings: {
-    position: { x: 0, y: 0, z: 0 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: 1
-  },
-  indiaGate: {
-    position: { x: -0.43, y: -0.29, z: 0.20 },
-    rotation: { x: 0, y: 4.6, z: 0 },
-    scale: 1
-  },
-  flag: {
-    position: { x: -0.66, y: 0.25, z: 0.10 },
-    rotation: { x: 0, y: 2.3, z: 0 },
-    scale: 0.62
-  },
-  videoPanel: {
-    position: { x: 0.08, y: 0.12, z: 0.27 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: 1.02
-  },
-  greetingPanel: {
-    position: { x: 0.62, y: 0.10, z: 0.24 },
-    rotation: { x: 0, y: -5.7, z: 0 },
-    scale: 0.92
-  },
-  chakra: {
-    position: { x: 0.02, y: 0.43, z: 0.08 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: 1.12
-  },
-  wallLogo: {
-    position: { x: 0.68, y: 0.50, z: -0.035 },
-    rotation: { x: 0, y: -5.7, z: 0 },
-    scale: 1
-  },
-  trails: {
-    position: { x: -0.08, y: -0.05, z: 0.14 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: 0.92
-  },
-  particles: {
-    position: { x: 0, y: 0, z: 0 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: 1
-  }
-};
-
-function applyLayout(object, layout) {
-  if (!object || !layout) return;
-  const position = layout.position ?? {};
-  object.position.set(position.x ?? 0, position.y ?? 0, position.z ?? 0);
-  const rotation = layout.rotation ?? {};
-  object.rotation.set(
-    THREE.MathUtils.degToRad(rotation.x ?? 0),
-    THREE.MathUtils.degToRad(rotation.y ?? 0),
-    THREE.MathUtils.degToRad(rotation.z ?? 0)
-  );
-  const scale = layout.scale ?? 1;
-  if (typeof scale === "number") object.scale.setScalar(scale);
-  else object.scale.set(scale.x ?? 1, scale.y ?? 1, scale.z ?? 1);
-}
-
 function canvasTexture(width, height, draw) {
   const canvas = document.createElement("canvas");
   canvas.width = width;
@@ -180,6 +83,9 @@ function createGreetingPanel() {
       toneMapped: false
     })
   );
+  panel.position.set(0.68, 0.08, 0.32);
+  panel.rotation.y = -0.18;
+  panel.scale.setScalar(0.92);
   return panel;
 }
 
@@ -224,6 +130,9 @@ function createVideoPanel(video) {
   screen.position.z = 0.026;
 
   group.add(glow, frame, screen);
+  group.position.set(0.05, 0.10, 0.38);
+  group.rotation.y = 0;
+  group.scale.setScalar(1.08);
   group.userData.screen = screen;
   return group;
 }
@@ -330,7 +239,8 @@ function createStageAccents() {
     group.add(ring);
   });
 
-  applyLayout(group, SCENE_LAYOUT.stageAccents);
+  group.scale.set(1.0, 0.58, 1);
+  group.position.set(0, -0.31, 0.31);
   return group;
 }
 
@@ -369,19 +279,20 @@ function createCurvedGradientWall(logoUrl) {
       }`
   });
   const wall = new THREE.Mesh(geometry, material);
-  wall.position.set(0, 0.18, -0.10);
+  wall.position.set(0, 0.16, -0.04);
   wall.receiveShadow = true;
   group.add(wall);
 
   const edgeMaterial = new THREE.MeshBasicMaterial({color:0xffd28a,transparent:true,opacity:.80,toneMapped:false});
   const topEdge = new THREE.Mesh(new THREE.BoxGeometry(2.02,.018,.025), edgeMaterial);
-  topEdge.position.set(0,.72,-.01);
+  topEdge.position.set(0,.70,.05);
   group.add(topEdge);
 
   const texture = new THREE.TextureLoader().load(logoUrl);
   texture.colorSpace = THREE.SRGBColorSpace;
   const logo = new THREE.Mesh(new THREE.PlaneGeometry(.48,.16), new THREE.MeshBasicMaterial({map:texture,transparent:true,toneMapped:false,depthWrite:false}));
-  applyLayout(logo, SCENE_LAYOUT.wallLogo);
+  logo.position.set(.68,.49,.025);
+  logo.rotation.y=-.10;
   group.add(logo);
   return group;
 }
@@ -486,8 +397,8 @@ export class ARExperience {
 
     // contentRoot retains the cinematic entrance and floating animation.
     this.contentRoot = new THREE.Group();
-    applyLayout(this.contentRoot, SCENE_LAYOUT.contentRoot);
-    this.contentRoot.userData.baseY = SCENE_LAYOUT.contentRoot.position.y;
+    this.contentRoot.position.set(0, 0.05, 0.02);
+    this.contentRoot.rotation.set(0, 0, 0);
     this.interactionGroup.add(this.contentRoot);
 
     const contactShadow = new THREE.Mesh(
@@ -500,12 +411,12 @@ export class ARExperience {
         side: THREE.DoubleSide
       })
     );
-    applyLayout(contactShadow, SCENE_LAYOUT.contactShadow);
+    contactShadow.scale.set(1.0, 0.58, 1);
+    contactShadow.position.set(0, -0.32, 0.17);
     contactShadow.renderOrder = -1;
     this.contentRoot.add(contactShadow);
 
     const gradientWall = createCurvedGradientWall(CONFIG.wallLogo);
-    applyLayout(gradientWall, SCENE_LAYOUT.gradientWall);
     this.contentRoot.add(gradientWall);
 
     const loader = new GLTFLoader();
@@ -523,11 +434,9 @@ export class ARExperience {
       targetSize: 1.48,
       axis: "width"
     }));
-    applyLayout(stage, SCENE_LAYOUT.stage);
-    const stageAccents = createStageAccents();
-    const premiumLightRings = createPremiumLightRings();
-    applyLayout(premiumLightRings, SCENE_LAYOUT.premiumLightRings);
-    this.contentRoot.add(stage, stageAccents, premiumLightRings);
+    stage.position.set(0, -0.36, 0.19);
+    stage.scale.set(1, 0.82, 1);
+    this.contentRoot.add(stage, createStageAccents(), createPremiumLightRings());
 
     // India Gate: upright focal object, left of centre.
     styleIndiaGate(gateModel);
@@ -537,7 +446,8 @@ export class ARExperience {
       targetSize: 0.66,
       axis: "height"
     }));
-    applyLayout(gate, SCENE_LAYOUT.indiaGate);
+    gate.position.set(-0.50, -0.29, 0.31);
+    gate.rotation.y = 0.14;
     this.contentRoot.add(gate);
 
     // Independent Chakra: clear, blue and in front of the stage.
@@ -548,37 +458,30 @@ export class ARExperience {
       targetSize: 0.22,
       axis: "width"
     }));
-    applyLayout(chakra, SCENE_LAYOUT.chakra);
+    chakra.position.set(0.02, 0.42, 0.20);
+    chakra.scale.setScalar(1.12);
     this.chakra = chakra;
     this.contentRoot.add(chakra);
 
     // Flag behind the monument, with shader-rendered 24-spoke Chakra.
     const flag = createAnimatedFlag();
-    applyLayout(flag, SCENE_LAYOUT.flag);
+    flag.position.set(-0.70, 0.25, 0.18);
+    flag.scale.setScalar(0.62);
+    flag.rotation.y = 0.08;
     this.flagMaterial = flag.userData.flagMaterial;
 
     const videoPanel = createVideoPanel(this.video);
-    applyLayout(videoPanel, SCENE_LAYOUT.videoPanel);
-
     const greetingPanel = createGreetingPanel();
-    applyLayout(greetingPanel, SCENE_LAYOUT.greetingPanel);
-
     const particles = createParticles();
-    applyLayout(particles, SCENE_LAYOUT.particles);
-    particles.userData.baseY = SCENE_LAYOUT.particles.position.y;
-
     const trails = createTricolorTrails();
-    applyLayout(trails, SCENE_LAYOUT.trails);
     this.particles = particles;
 
+    trails.position.set(-0.15, -0.03, 0.22);
+    trails.scale.setScalar(0.92);
     this.contentRoot.add(flag, videoPanel, greetingPanel, particles, trails);
 
     anchor.onTargetFound = async () => {
       this.targetVisible = true;
-      this.rotationTarget = 0;
-      this.rotationCurrent = 0;
-      this.rotationVelocity = 0;
-      this.interactionGroup.rotation.y = 0;
       this.interactionGroup.visible = true;
       this.contentRoot.scale.setScalar(0.025);
       this.onStatus?.("Card detected • Experience active");
@@ -610,13 +513,13 @@ export class ARExperience {
       if (this.chakra) this.chakra.rotation.z = time * 0.42;
       if (this.particles) {
         this.particles.rotation.z = Math.sin(time * 0.24) * 0.06;
-        this.particles.position.y = this.particles.userData.baseY + Math.sin(time * 0.72) * 0.018;
+        this.particles.position.y = Math.sin(time * 0.72) * 0.018;
       }
 
       if (this.targetVisible && this.contentRoot) {
         const entranceScale = THREE.MathUtils.lerp(this.contentRoot.scale.x, 1, 0.105);
         this.contentRoot.scale.setScalar(entranceScale);
-        this.contentRoot.position.y = this.contentRoot.userData.baseY + Math.sin(time * 0.82) * 0.004;
+        this.contentRoot.position.y = 0.07 + Math.sin(time * 0.82) * 0.004;
         this.contentRoot.rotation.z = Math.sin(time * 0.50) * 0.003;
       }
 
@@ -674,11 +577,7 @@ export class ARExperience {
         const deltaX = event.clientX - this.lastPointerX;
         const deltaTime = Math.max(now - this.lastPointerTime, 8);
         const rotationDelta = deltaX * 0.008;
-        this.rotationTarget = THREE.MathUtils.clamp(
-          this.rotationTarget + rotationDelta,
-          -0.52,
-          0.52
-        );
+        this.rotationTarget += rotationDelta;
         this.rotationVelocity = THREE.MathUtils.clamp(
           rotationDelta / (deltaTime / 16.67),
           -0.12,
@@ -767,18 +666,14 @@ export class ARExperience {
 
     // Preserve gentle momentum after a horizontal swipe.
     if (!isTouching && Math.abs(this.rotationVelocity) > 0.00008) {
-      this.rotationTarget = THREE.MathUtils.clamp(
-        this.rotationTarget + this.rotationVelocity,
-        -0.52,
-        0.52
-      );
-      this.rotationVelocity *= 0.90;
+      this.rotationTarget += this.rotationVelocity;
+      this.rotationVelocity *= 0.925;
     }
 
-    // Keep the enterprise composition front-facing.
-    // Automatic rotation is intentionally disabled so the wall and panels
-    // never become edge-on during normal viewing.
-    void idleFor;
+    // Museum-style idle rotation begins after five seconds without input.
+    if (!isTouching && !this.resetting && idleFor > 5000) {
+      this.rotationTarget += 0.0017;
+    }
 
     this.rotationCurrent = THREE.MathUtils.lerp(
       this.rotationCurrent,
