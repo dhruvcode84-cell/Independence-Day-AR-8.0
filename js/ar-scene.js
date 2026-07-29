@@ -575,7 +575,7 @@ export class ARExperience {
     applyLayout(trails, SCENE_LAYOUT.trails);
 
     this.particles = particles;
-    this.contentRoot.add(flag, videoPanel, greetingPanel, particles, trails);
+    this.contentRoot.add(flag, videoPanel, greetingPanel, particles);
 
     anchor.onTargetFound = async () => {
       this.targetVisible = true;
