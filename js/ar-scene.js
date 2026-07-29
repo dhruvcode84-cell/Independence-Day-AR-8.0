@@ -26,15 +26,15 @@ const SCENE_LAYOUT = {
     scale: { x: 1, y: 0.82, z: 1 }
   },
   stageAccents: {
-    position: { x: 0, y: -0.31, z: 0.31 },
+    position: { x: 0, y: -0.32, z: 0.17 },
     rotation: { x: -90, y: 0, z: 0 },
-    scale: { x: 1.5, y: 1.08, z: 1.5 }
+    scale: { x: 1.9, y: 1.48, z: 1.9 }
   },
-  premiumLightRings: {
-    position: { x: 0, y: 0, z: 0 },
-    rotation: { x: -90, y: 0, z: 0 },
-    scale: 1
-  },
+  // premiumLightRings: {
+  //   position: { x: 0, y: 0, z: 0 },
+  //   rotation: { x: -90, y: 0, z: 0 },
+  //   scale: 1
+  // },
   indiaGate: {
     position: { x: -0.43, y: -0.29, z: -0.01 },
     rotation: { x: 0, y: 180.9, z: 0 },
