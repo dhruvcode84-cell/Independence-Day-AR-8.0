@@ -36,7 +36,7 @@ const SCENE_LAYOUT = {
     scale: 1
   },
   indiaGate: {
-    position: { x: -0.43, y: -0.29, z: -0.08 },
+    position: { x: -0.43, y: -0.29, z: -0.05 },
     rotation: { x: 0, y: 180.9, z: 0 },
     scale: 1
   },
@@ -67,7 +67,7 @@ const SCENE_LAYOUT = {
   },
   trails: {
     position: { x: -0.08, y: -0.05, z: 0.14 },
-    rotation: { x: 0, y: 0, z: 0 },
+    rotation: { x: -90, y: 0, z: 0 },
     scale: 0.92
   },
   particles: {
