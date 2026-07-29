@@ -36,8 +36,8 @@ const SCENE_LAYOUT = {
   //   scale: 1
   // },
   indiaGate: {
-    position: { x: -0.40, y: -0.29, z: -0.01 },
-    rotation: { x: 0, y: 181, z: 0 },
+    position: { x: -0.38, y: -0.29, z: -0.01 },
+    rotation: { x: 0, y: 185, z: 0 },
     scale: 1
   },
   flag: {
@@ -65,11 +65,11 @@ const SCENE_LAYOUT = {
     rotation: { x: 0, y: -5.7, z: 0 },
     scale: 1
   },
-  trails: {
-    position: { x: -0.08, y: -0.05, z: 0.14 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: 0.92
-  },
+  // trails: {
+  //   position: { x: -0.08, y: -0.05, z: 0.14 },
+  //   rotation: { x: 0, y: 0, z: 0 },
+  //   scale: 0.92
+  // },
   particles: {
     position: { x: 0, y: 0, z: 0 },
     rotation: { x: 0, y: 0, z: 0 },
