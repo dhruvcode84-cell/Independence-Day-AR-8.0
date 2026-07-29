@@ -13,7 +13,7 @@ const SCENE_LAYOUT = {
   contactShadow: {
     position: { x: 0, y: -0.32, z: 0.17 },
     rotation: { x: -90, y: 0, z: 0 },
-    scale: { x: 1.0, y: 0.58, z: 1.0 }
+    scale: { x: 1.5, y: 1.08, z: 1.5 }
   },
   gradientWall: {
     position: { x: 0, y: 0, z: -0.36 },
@@ -41,7 +41,7 @@ const SCENE_LAYOUT = {
     scale: 1
   },
   flag: {
-    position: { x: -0.40, y: 0.40, z: -0.10 },
+    position: { x: -0.40, y: 0.40, z: -0.12 },
     rotation: { x: 0, y: 2.3, z: 0 },
     scale: 0.7
   },
