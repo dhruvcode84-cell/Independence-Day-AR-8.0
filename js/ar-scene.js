@@ -36,7 +36,7 @@ const SCENE_LAYOUT = {
   //   scale: 1
   // },
   indiaGate: {
-    position: { x: -0.34, y: -0.28, z: -0.01 },
+    position: { x: -0.34, y: -0.28, z: 0 },
     rotation: { x: 0, y: 185, z: 0 },
     scale: 1
   },
