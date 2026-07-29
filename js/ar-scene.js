@@ -36,8 +36,8 @@ const SCENE_LAYOUT = {
     scale: 1
   },
   indiaGate: {
-    position: { x: -0.43, y: -0.29, z: 0.20 },
-    rotation: { x: 0, y: 180.6, z: 0 },
+    position: { x: -0.43, y: -0.29, z: -0.1 },
+    rotation: { x: 0, y: 180.9, z: 0 },
     scale: 1
   },
   flag: {
@@ -58,7 +58,7 @@ const SCENE_LAYOUT = {
   chakra: {
     position: { x: 0, y: 0, z: -0.36 },
     rotation: { x: 0, y: 0, z: 0 },
-    scale: 1.2
+    scale: 1.5
   },
   wallLogo: {
     position: { x: 0.68, y: 0.50, z: 0.1 },
