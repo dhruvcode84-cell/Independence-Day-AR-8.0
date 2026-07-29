@@ -607,10 +607,16 @@ export class ARExperience {
       const time = clock.getElapsedTime();
 
       if (this.flagMaterial) this.flagMaterial.uniforms.time.value = time;
+      // if (this.chakra) {
+      //   this.chakra.rotation.z =
+      //     THREE.MathUtils.degToRad(SCENE_LAYOUT.chakra.rotation.z) + time * 0.42;
+      // }
+
       if (this.chakra) {
-        this.chakra.rotation.z =
-          THREE.MathUtils.degToRad(SCENE_LAYOUT.chakra.rotation.z) + time * 0.42;
-      }
+  this.chakra.rotation.z = THREE.MathUtils.degToRad(
+    SCENE_LAYOUT.chakra.rotation.z
+  );
+}
       if (this.particles) {
         this.particles.rotation.z = Math.sin(time * 0.24) * 0.06;
         this.particles.position.y =
