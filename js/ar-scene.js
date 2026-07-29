@@ -377,10 +377,10 @@ function createCurvedGradientWall(logoUrl) {
   wall.receiveShadow = true;
   group.add(wall);
 
-  const edgeMaterial = new THREE.MeshBasicMaterial({color:0xffd28a,transparent:true,opacity:.80,toneMapped:false});
-  const topEdge = new THREE.Mesh(new THREE.BoxGeometry(2.02,.018,.025), edgeMaterial);
-  topEdge.position.set(0,.70,.05);
-  group.add(topEdge);
+  // const edgeMaterial = new THREE.MeshBasicMaterial({color:0xffd28a,transparent:true,opacity:.80,toneMapped:false});
+  // const topEdge = new THREE.Mesh(new THREE.BoxGeometry(2.02,.018,.025), edgeMaterial);
+  // topEdge.position.set(0,.70,.05);
+  // group.add(topEdge);
 
   const texture = new THREE.TextureLoader().load(logoUrl);
   texture.colorSpace = THREE.SRGBColorSpace;
