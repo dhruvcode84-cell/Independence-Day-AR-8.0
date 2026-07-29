@@ -46,7 +46,7 @@ const SCENE_LAYOUT = {
     scale: 0.7
   },
   videoPanel: {
-    position: { x: 0.08, y: 0.12, z: -0.27 },
+    position: { x: 0.08, y: 0.12, z: 0.27 },
     rotation: { x: 0, y: 0, z: 0 },
     scale: 1.02
   },
@@ -56,7 +56,7 @@ const SCENE_LAYOUT = {
     scale: 0.92
   },
   chakra: {
-    position: { x: 0.02, y: 0.43, z: 0.08 },
+    position: { x: 0, y: 0, z: -0.36 },
     rotation: { x: 0, y: 0, z: 0 },
     scale: 1.12
   },
