@@ -27,7 +27,7 @@ const SCENE_LAYOUT = {
   },
   stageAccents: {
     position: { x: 0, y: -0.31, z: 0.31 },
-    rotation: { x: 0, y: 0, z: 0 },
+    rotation: { x: -90, y: 0, z: 0 },
     scale: { x: 1.0, y: 0.58, z: 1.0 }
   },
   premiumLightRings: {
@@ -41,7 +41,7 @@ const SCENE_LAYOUT = {
     scale: 1
   },
   flag: {
-    position: { x: -0.40, y: 0.40, z: -0.12 },
+    position: { x: -0.40, y: 0.40, z: -0.15 },
     rotation: { x: 0, y: 2.3, z: 0 },
     scale: 0.7
   },
