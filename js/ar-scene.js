@@ -534,7 +534,7 @@ export class ARExperience {
     const premiumLightRings = createPremiumLightRings();
     applyLayout(premiumLightRings, SCENE_LAYOUT.premiumLightRings);
 
-    this.contentRoot.add(stage, stageAccents, premiumLightRings);
+    this.contentRoot.add(stage, stageAccents);
 
     // India Gate: upright focal object, left of centre.
     styleIndiaGate(gateModel);
